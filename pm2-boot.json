@@ -1,0 +1,14 @@
+{
+    "apps" : [
+        {
+            "name"        : "hatena-iti",
+            "script"      : "/vagrant/www/test-socket.io/hatena-iti/bin/www",
+            "instances"   : 1,
+            "exec_mode"   : "cluster_mode",
+            "node_args"   : "--stack-size=10240000",
+            "env"         : {
+                "NODE_ENV": "localhost"
+            }
+        }
+    ]
+}

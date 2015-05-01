@@ -22,7 +22,20 @@ function sio(server) {
 	// Socket.IO
 	var sio = socketio.listen(server);
 	sio.set('transports', [ 'websocket' ]);
-
+	
+	//	Correspond to cluster.
+	if( true ){
+		var redis = require('socket.io/lib/stores/redis');
+		var redisConf = { host: '127.0.0.1', port: 6379 };
+		
+		// storeタイプをredisに変更
+		sio.set('store', new redis({
+		    redisPub: redisConf,
+		    redisSub: redisConf,
+		    redisClient: redisConf
+		}));
+	}
+	
 	// 接続時
 	sio.sockets.on('connection', function(socket) {
 
